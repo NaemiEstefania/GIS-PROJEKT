@@ -1,8 +1,11 @@
 # Bücherjournal
+
 Individuelle Bücherliste mit Bewertung:
 
-Webanwendung: ermöglicht Bücher zu verwalten, zu bewerten ( evtl. mit Sternen ) und den Lesestatus festzulegen ( ungelesen, gelesen ) 
-Funktionen: Eingabe von Buchtitel, Autor und Bewertung ( Sterne 1-5 ), Markierung der Bücher als ungelesen oder gelesen 
+Webanwendung: 
+ermöglicht Bücher zu verwalten, zu bewerten ( evtl. mit Sternen ) und den Lesestatus festzulegen ( ungelesen, gelesen ) 
+Funktionen: 
+Eingabe von Buchtitel, Autor und Bewertung ( Sterne 1-5 ), Markierung der Bücher als ungelesen oder gelesen 
 Wie und Wo werden die eingegebenen Informationen eingegeben oder erstellt:
 Interaktive Elemente wie Textfelder, Sternebewertungs-Systeme und Checkboxen 
 Wie und Wo sollen Informationen bearbeitet oder gelöscht:
