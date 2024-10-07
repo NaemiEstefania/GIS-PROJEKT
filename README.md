@@ -8,7 +8,7 @@ Funktionen:
 Eingabe vom Buchtitel, Autor und Bewertung (Sterne 1-5), Markierung der Bücher als ungelesen oder gelesen 
 Wie und Wo werden die eingegebenen Informationen eingegeben oder erstellt?
 Interaktive Elemente wie Textfelder, Sternenbewertungs-Systeme, Checkboxen und Sonstiges 
-Wie und Wo sollen Informationen bearbeitet oder gelöscht?
+Wie und Wo sollen Informationen bearbeitet oder gelöscht werden?
 Jedes Buch hat eine Bearbeiten-Schaltfläche, mit dem der Benutzer Änderungen vornehmen kann und nach der Bearbeitung klickt der Benutzer auf Speichern (Aktualisierung des Local Storage)
 Außerdem gibt es eine Löschen-Schaltfläche neben jedem Buch und Schaltfläche mit "Buch hinzufügen"
 Wie und Wo werden die Informationen angezeigt?
