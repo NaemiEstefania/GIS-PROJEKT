@@ -1,6 +1,6 @@
 /* Grundlegendes Design der Seite */
 body {
-    font-family: Arial, sans-serif; /* Standardschriftart */
+    font-family: 'Times New Roman', Times, serif; /* Standardschriftart */
     background-color: #b1a7a8;      /* rosa Hintergrund */
     margin: 0;
     padding: 0;
