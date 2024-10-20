@@ -1,4 +1,72 @@
-p {
-    background: rgb(255, 0, 144);
-    color: rgb(16, 15, 15);
+/* Grundlegendes Design der Seite */
+body {
+    font-family: Arial, sans-serif; /* Standardschriftart */
+    background-color: #f0f4f8;      /* Heller Hintergrund */
+    margin: 0;
+    padding: 0;
+}
+
+/* Titel der Seite */
+h1 {
+    text-align: center;             /* Zentrierter Text */
+    color: #5D3FD3;                 /* Lila Textfarbe */
+    margin-top: 20px;               /* Abstand nach oben */
+}
+
+/* Suchleiste */
+.search-bar {
+    display: block;                 /* Volle Breite einnehmen */
+    width: 80%;                     /* 80% der Breite */
+    margin: 20px auto;              /* Zentriert und Abstand */
+    padding: 10px;                  /* Innenabstand */
+    border: 1px solid #ccc;         /* Grauer Rand */
+    border-radius: 5px;             /* Abgerundete Ecken */
+}
+
+/* Formular zum Hinzufügen eines Buches */
+.book-form {
+    width: 80%;                     /* 80% der Breite */
+    margin: 20px auto;              /* Zentriert und Abstand */
+    padding: 20px;                  /* Innenabstand */
+    background-color: white;        /* Weißer Hintergrund */
+    border-radius: 10px;            /* Abgerundete Ecken */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+/* Textfelder und Textarea im Formular */
+.book-form input[type="text"],
+.book-form textarea {
+    width: 100%;                    /* Volle Breite */
+    padding: 10px;                  /* Innenabstand */
+    margin-top: 10px;               /* Abstand nach oben */
+    border: 1px solid #ccc;         /* Grauer Rand */
+    border-radius: 5px;             /* Abgerundete Ecken */
+}
+
+/* Sternebewertung */
+.stars label {
+    font-size: 20px;                /* Größere Schriftgröße für Sterne */
+    color: #ccc;                    /* Graue Sterne standardmäßig */
+}
+
+.stars input[type="radio"]:checked ~ label {
+    color: gold;                    /* Goldene Sterne, wenn ausgewählt */
+}
+
+/* Checkbox und Button */
+.book-form input[type="checkbox"] {
+    margin-top: 10px;               /* Abstand nach oben */
+}
+
+.book-form input[type="submit"] {
+    background-color: #5D3FD3;      /*
+color: white;                   /* Weißer Text */
+border: none;                   /* Kein Rand */
+padding: 10px 20px;             /* Innenabstand */
+border-radius: 5px;             /* Abgerundete Ecken */
+cursor: pointer;                /* Mauszeiger zeigt Hand */
+}
+
+.book-form input[type="submit"]:hover {
+background-color: #4a2dbb;      /* Etwas dunkleres Lila beim Hover */
 }
