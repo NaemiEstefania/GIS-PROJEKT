@@ -9,7 +9,7 @@ body {
 /* Titel der Seite */
 h1 {
     text-align: center;             /* Zentrierter Text */
-    color: #5D3FD3;                 /* Lila Textfarbe */
+    color: #e1d3c4;                 /* Beige Textfarbe */
     margin-top: 20px;               /* Abstand nach oben */
 }
 
@@ -50,7 +50,7 @@ h1 {
 }
 
 .stars input[type="radio"]:checked ~ label {
-    color: gold;                    /* Goldene Sterne, wenn ausgewählt */
+    color: #fbccd1;                    /* rosane Sterne, wenn ausgewählt */
 }
 
 /* Checkbox und Button */
@@ -59,7 +59,7 @@ h1 {
 }
 
 .book-form input[type="submit"] {
-    background-color: #5D3FD3;      /*
+    background-color: #e1d3c4;      /*
 color: white;                   /* Weißer Text */
 border: none;                   /* Kein Rand */
 padding: 10px 20px;             /* Innenabstand */
@@ -68,5 +68,5 @@ cursor: pointer;                /* Mauszeiger zeigt Hand */
 }
 
 .book-form input[type="submit"]:hover {
-background-color: #4a2dbb;      /* Etwas dunkleres Lila beim Hover */
+background-color: #c1b6a3;      /* gräulich beim Hover */
 }
