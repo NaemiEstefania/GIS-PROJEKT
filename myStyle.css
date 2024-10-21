@@ -86,7 +86,3 @@ background-color: #c1b6a3;      /* gräulich beim Hover ( drüber fahren mit der
     margin: 20px auto; /* Zentriert und Abstand */
     text-align: left;  /*text ist links ausgerichtet*/
 }
-/* Überschrift Buchliste*/
-.book-list h2 {
-    margin-bottom: 15px;    /*Abstand nach unten für den titel */
-} 
