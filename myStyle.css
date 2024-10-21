@@ -69,7 +69,14 @@ cursor: pointer;                /* Mauszeiger zeigt Hand */
 
 .book-form input[type="submit"]:hover {
 background-color: #c1b6a3;      /* gräulich beim Hover ( drüber fahren mit der Maus) */
-} /* Buch-Icon */
+} /* Buch Cover platzhalter */
+.book-cover-placeholder {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin-top: 10px;
+}
+
 .book-icon {
     width: 100px;               /* Bildbreite */
     height: auto;              /* Höhe automatisch anpassen */
@@ -84,5 +91,5 @@ background-color: #c1b6a3;      /* gräulich beim Hover ( drüber fahren mit der
 .book-list {
     width: 80%;   /* 80 prozent der breite */
     margin: 20px auto; /* Zentriert und Abstand */
-    text-align: left;  /*text ist links ausgerichtet*/
+    text-align: left;
 }
