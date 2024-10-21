@@ -31,12 +31,17 @@ h1 {
     background-color: white;        /* Weißer Hintergrund */
     border-radius: 10px;            /* Abgerundete Ecken */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Textfelder und Textarea im Formular */
 .book-form input[type="text"],
 .book-form textarea {
-    width: 100%;                    /* Volle Breite */
+    width: 100%;    /* Volle Breite */
+    max-width: 100%; /*max breite */
     padding: 10px;                  /* Innenabstand */
     margin-top: 10px;               /* Abstand nach oben */
     border: 1px solid #ccc;         /* Grauer Rand */
