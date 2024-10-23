@@ -68,7 +68,7 @@ background-color: #e1d3c4;      /*gräulich hintergrund */
 border: none;                   /* Kein Rand */
 padding: 10px 20px;             /* Innenabstand */
 border-radius: 5px;             /* Abgerundete Ecken */
-cursor: pointer;  /* hand mauszeiger */
+cursor: pointer;                /* hand mauszeiger */
 
 }
 
