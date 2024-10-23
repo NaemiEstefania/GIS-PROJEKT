@@ -32,9 +32,9 @@ h1 {
     border-radius: 10px;            /* Abgerundete Ecken */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
 
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+    display:flex; /* aktiviert flexbox modell für den container, ermöglicht child elements ( befinden sich innerhalb eines anderen elements, Parent element) in flexibler anordnung */
+    flex-direction: column; /* ordnet die kinder des Conatiners in einer vertikalen spalte an, anstatt in einer zeile (flex-direction: row )*/
+    align-items: center; /* zentriert kinder horizontal innerhalb des containers /*
 }
 
 /* Textfelder und Textarea im Formular */
@@ -64,8 +64,7 @@ h1 {
 }
 
 .book-form input[type="submit"] {
-    background-color: #e1d3c4;      /*
-color: white;                   /* Weißer Text */
+background-color: #e1d3c4;      /*gräulich hintergrund */
 border: none;                   /* Kein Rand */
 padding: 10px 20px;             /* Innenabstand */
 border-radius: 5px;             /* Abgerundete Ecken */
@@ -74,12 +73,11 @@ cursor: pointer;                /* Mauszeiger zeigt Hand */
 
 .book-form input[type="submit"]:hover {
 background-color: #c1b6a3;      /* gräulich beim Hover ( drüber fahren mit der Maus) */
-} /* Buch Cover platzhalter */
-.book-cover-placeholder {
-    display: block;
-    width: 100px;
-    height: auto;
-    margin-top: 10px;
+} 
+    display: block; /* elemt buch hinzufügen wird als block element dargestellt */
+    width: 100px; /* breite des elements 100px breit*/
+    height: auto; /* höhe des elements wird angepasst um den darin enthaltenden inhalt vollständig darzustellen */
+    margin-top: 10px;  /* fügt oben am element einen abstand von 10 px hinzu */
 }
 
 .book-icon {
@@ -96,7 +94,7 @@ background-color: #c1b6a3;      /* gräulich beim Hover ( drüber fahren mit der
 .book-list {
     width: 80%;   /* 80 prozent der breite */
     margin: 20px auto; /* Zentriert und Abstand */
-    text-align: left;
+    text-align: left; /* links ausgerichtet*/
 }
 .book-list h2 {
     color: #e1d3c4;                 /* Beige Textfarbe von gespeicherte bücher selbe wie der titel */
