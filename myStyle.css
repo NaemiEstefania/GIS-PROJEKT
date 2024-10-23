@@ -34,7 +34,7 @@ h1 {
 
     display:flex; /* aktiviert flexbox modell für den container, ermöglicht child elements ( befinden sich innerhalb eines anderen elements, Parent element) in flexibler anordnung */
     flex-direction: column; /* ordnet die kinder des Conatiners in einer vertikalen spalte an, anstatt in einer zeile (flex-direction: row )*/
-    align-items: center; /* zentriert kinder horizontal innerhalb des containers /*
+    align-items: center; /* zentriert kinder horizontal innerhalb des containers */
 }
 
 /* Textfelder und Textarea im Formular */
@@ -68,18 +68,20 @@ background-color: #e1d3c4;      /*gräulich hintergrund */
 border: none;                   /* Kein Rand */
 padding: 10px 20px;             /* Innenabstand */
 border-radius: 5px;             /* Abgerundete Ecken */
-cursor: pointer;                /* Mauszeiger zeigt Hand */
+cursor: pointer;  /* hand mauszeiger */
+
 }
 
 .book-form input[type="submit"]:hover {
-background-color: #c1b6a3;      /* gräulich beim Hover ( drüber fahren mit der Maus) */
-} 
-    display: block; /* elemt buch hinzufügen wird als block element dargestellt */
-    width: 100px; /* breite des elements 100px breit*/
-    height: auto; /* höhe des elements wird angepasst um den darin enthaltenden inhalt vollständig darzustellen */
-    margin-top: 10px;  /* fügt oben am element einen abstand von 10 px hinzu */
-}
+background-color: #c1b6a3;  
+} .book-cover-placeholder {
+width: 100px;            /* */
+display: block; /* elemt buch hinzufügen wird als block element dargestellt */ width: 100px; /* breite des elements 100px breit*/
+height: auto; /* höhe des elements wird angepasst um den darin enthaltenden inhalt vollständig darzustellen */
+margin-top: 10px;  /* fügt oben am element einen abstand von 10 px hinzu */
+}    /* gräulich beim Hover ( drüber fahren mit der Maus) */
 
+    
 .book-icon {
     width: 100px;               /* Bildbreite */
     height: auto;              /* Höhe automatisch anpassen */
