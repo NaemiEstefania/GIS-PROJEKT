@@ -43,7 +43,7 @@ h1 {
     width: 100%;    /* Volle Breite */
     max-width: 100%; /*max breite */
     padding: 10px;                  /* Innenabstand */
-    margin-top: 10px;               /* Abstand nach oben */
+    margin: 0 0 10px;               /* Abstand nur unten */
     border: 1px solid #ccc;         /* Grauer Rand */
     border-radius: 5px;             /* Abgerundete Ecken */
 }
