@@ -46,12 +46,15 @@ h1 {
     margin: 0 0 10px;               /* Abstand nur unten */
     border: 1px solid #ccc;         /* 1px dick solid (durchgehend) Grauer Rand */
     border-radius: 5px;             /* Abgerundete Ecken */
+} 
+.Bewertung { /* klasse bewertung für überschrift der sterne */
+       margin-top: 10px;
 }
 
-/* Sternebewertung */
-.stars label {
-    font-size: 20px;                /* Größere Schriftgröße für Sterne */
-    color: #ccc;                    /* Graue Sterne standardmäßig */
+/* Sterne */
+.stars label {    
+    font-size: 20px;  /* Größere Schriftgröße für Sterne */
+    color: #ccc;  /* Graue Sterne standardmäßig */
 }
 
 .stars input[type="radio"]:checked ~ label { /* Hilfe KI, :checked pdeudoklassenselektor um elemente auszuwählen die als ausgewählt markiert sind, label wendet die angeg regel auf nachfolgendes label element an , farbänderung nur aktiv wenn das element ausgewählt ist */
@@ -68,7 +71,8 @@ background-color: #e1d3c4;      /*gräulich hintergrund */
 border: none;                   /* Kein Rand */
 padding: 10px 20px;             /* Innenabstand */
 border-radius: 5px;             /* Abgerundete Ecken */
-cursor: pointer;                /* hand mauszeiger */
+cursor: pointer;                 /* hand mauszeiger */
+margin-top: 10px;                 /* abstand nach oben */
 
 }
 
