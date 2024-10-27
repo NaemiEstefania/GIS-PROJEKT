@@ -98,6 +98,6 @@ margin-top: 10px;  /* fügt oben am element einen abstand von 10 px hinzu */
     margin: 20px auto; /* Zentriert und Abstand */
     text-align: left; /* links ausgerichtet*/
 }
-.book-list h2 {
+h2 {
     color: #e1d3c4;                 /* Beige Textfarbe von gespeicherte bücher selbe wie der titel */
 }
