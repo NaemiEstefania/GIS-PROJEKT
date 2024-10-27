@@ -11,14 +11,12 @@
     <h1>Bücherjournal</h1>
 
     <!-- Suchleiste und placeholder wird auf dem bildschrim angezeigt solange das feld leer ist  -->
-    <input 
-      type="text"
-      class="search-bar"
-      placeholder="Suche nach Titel oder Autor..."  
-    />
+    <input type="text"
+    class="search-bar"
+    placeholder="Suche nach Titel oder Autor..."  />
 
     <!-- Formular zum Hinzufügen eines Buches -->
-    <div class="book-form"> <!-- beginnt einen container für das formular der ccs klasse "book-form" -->
+    <div class="book-form"> <!-- beginnt einen container für das formular, ccs klasse ".book-form" -->
       <label for="title">Buchtitel:</label> <!-- label = beschriftungeslemt mit dem text buchtitel -->
       <input type="text" id="title" name="title" /> <!-- input = eingabefeld für titel  -->
 
@@ -34,7 +32,7 @@
 
       <!-- Sternebewertung Hilfe von KI -->
       <label for="rating">Bewertung:</label>
-      <div class="stars"> <!-- neuer bereich durch div mit der css klasse stars -->
+      <div class="stars"> <!-- neuer bereich  bzw container durch div (blockelement und nimmt ganze zeile ein) zeilenumbruch   -->
         <input type="radio" id="star5" name="rating" value="5" />
         <label for="star5">★</label>
         <input type="radio" id="star4" name="rating" value="4" />
@@ -49,7 +47,7 @@
 
       <!-- Checkbox für Lesestatus -->
       <label>
-        <input type="checkbox" id="read-status" /> Gelesen
+      <input type="checkbox" /> Gelesen
       </label>
 
       <!-- Button zum Hinzufügen -->
@@ -57,7 +55,7 @@
     </div>
 
     <!-- Bereich für gespeicherte Bücher h2 als tag sprich änderung in css mit aufruf h2 -->
-    <div class="book-list">
+    <div class="book-saved">
       <h2>Gespeicherte Bücher</h2>
       <!-- Beispielbuch -->
       <div class="book-item">
@@ -67,6 +65,7 @@
         <p></p><strong>Titel:</strong> It ends with us</p> <!-- verschiedene texabsätze mit p strong für fettgeduckt-->
         <p><strong>Autor:</strong> Colleen Hoover</p>
         <p><strong>Bewertung:</strong> ★★★★☆</p>
+        <p><strong>Gedanken</strong> Schöne Geschichte...</p>
         <p><strong>Status:</strong> Gelesen</p>
         <button>Bearbeiten</button>
         <button>Löschen</button> 

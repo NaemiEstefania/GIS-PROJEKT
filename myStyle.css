@@ -1,7 +1,7 @@
 /* Grundlegendes Design der Seite */
 body {
     font-family: 'Times New Roman', Times, serif; /* Standardschriftart */
-    background-color: #b1a7a8;      /* rosa Hintergrund */
+    background-color: #b1a7a8;      /*  Hintergrund  farbe */
     margin: 0;
     padding: 0;
 }
@@ -13,7 +13,7 @@ h1 {
     margin-top: 20px;               /* Abstand nach oben */
 }
 
-/* Suchleiste */
+/* Suchleiste (.) kennzeichnung als klasse , diese wird in html definiert und durch aufruf wird hier gestaltung möglich*/
 .search-bar {
     display: block;                 /* Volle Breite einnehmen */
     width: 80%;                     /* 80% der Breite */
@@ -32,8 +32,8 @@ h1 {
     border-radius: 10px;            /* Abgerundete Ecken */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
 
-    display:flex; /* aktiviert flexbox modell für den container, ermöglicht child elements ( befinden sich innerhalb eines anderen elements, Parent element) in flexibler anordnung */
-    flex-direction: column; /* ordnet die kinder des Conatiners in einer vertikalen spalte an, anstatt in einer zeile (flex-direction: row )*/
+    display: flex; /* aktiviert flexbox modell für den container, ermöglicht child elements ( befinden sich innerhalb eines anderen elements, Parent element) in flexibler anordnung */
+    flex-direction: column; /* ordnet die kinder des Conatiners in einer vertikalen spalte an statt in einer zeile (> flex-direction: row )*/
     align-items: center; /* zentriert kinder horizontal innerhalb des containers */
 }
 
@@ -44,7 +44,7 @@ h1 {
     max-width: 100%; /*max breite */
     padding: 10px;                  /* Innenabstand */
     margin: 0 0 10px;               /* Abstand nur unten */
-    border: 1px solid #ccc;         /* Grauer Rand */
+    border: 1px solid #ccc;         /* 1px dick solid (durchgehend) Grauer Rand */
     border-radius: 5px;             /* Abgerundete Ecken */
 }
 
@@ -54,8 +54,8 @@ h1 {
     color: #ccc;                    /* Graue Sterne standardmäßig */
 }
 
-.stars input[type="radio"]:checked ~ label {
-    color: #fbccd1;                    /* rosane Sterne, wenn ausgewählt */
+.stars input[type="radio"]:checked ~ label { /* Hilfe KI, :checked pdeudoklassenselektor um elemente auszuwählen die als ausgewählt markiert sind, label wendet die angeg regel auf nachfolgendes label element an , farbänderung nur aktiv wenn das element ausgewählt ist */
+    color: #fbccd1;                    /* rosane Sterne */
 }
 
 /* Checkbox und Button */
@@ -73,27 +73,29 @@ cursor: pointer;                /* hand mauszeiger */
 }
 
 .book-form input[type="submit"]:hover {
-background-color: #c1b6a3;  
-} .book-cover-placeholder {
-width: 100px;            /* */
-display: block; /* elemt buch hinzufügen wird als block element dargestellt */ width: 100px; /* breite des elements 100px breit*/
+background-color: #c1b6a3;   /* gräulich beim Hover ( drüber fahren mit der Maus) */
+} 
+.book-cover-placeholder {
+width: 100px;            /* breit des platzhalters */
+display: block; /* elemt buch hinzufügen wird als block element dargestellt */ 
 height: auto; /* höhe des elements wird angepasst um den darin enthaltenden inhalt vollständig darzustellen */
 margin-top: 10px;  /* fügt oben am element einen abstand von 10 px hinzu */
-}    /* gräulich beim Hover ( drüber fahren mit der Maus) */
+}    
 
     
 .book-icon {
     width: 100px;               /* Bildbreite */
     height: auto;              /* Höhe automatisch anpassen */
-    margin-right: 40px;        /* Abstand zwischen Bild und Text */
-    vertical-align: middle;    /* Vertikale Ausrichtung */
+    margin-right: 40px;    /* Abstand zwischen Bild und Text */
+    margin-top: -20px;
+    /* vertical-align: middle;    /* Vertikale Ausrichtung */
 } 
 .book-item {  
     display:flex;
     align-items: center;
     margin-bottom: 15px;
 } 
-.book-list {
+.book-saved {
     width: 80%;   /* 80 prozent der breite */
     margin: 20px auto; /* Zentriert und Abstand */
     text-align: left; /* links ausgerichtet*/
