@@ -1,15 +1,14 @@
 /* Grundlegendes Design der Seite */
 body {
-    font-family: 'Times New Roman', Times, serif; /* Standardschriftart */
-    background-color: #b1a7a8;      /*  Hintergrund  farbe */
-    margin: 0;
-    padding: 0;
+    font-family: 'Times New Roman', Times, serif; 
+    background-color: #b1a7a8;    
+    
 }
 
 /* Titel der Seite */
 h1 {
     text-align: center;             /* Zentrierter Text */
-    color: #e1d3c4;                 /* Beige Textfarbe */
+    color: #e1d3c4;              
     margin-top: 20px;               /* Abstand nach oben */
 }
 
@@ -17,9 +16,9 @@ h1 {
 .search-bar {
     display: block;                 /* Volle Breite einnehmen */
     width: 80%;                     /* 80% der Breite */
-    margin: 20px auto;              /* Zentriert und Abstand */
-    padding: 10px;                  /* Innenabstand */
-    border: 1px solid #ccc;         /* Grauer Rand */
+    margin: 10px auto;              /* Zentriert und Abstand */
+    padding: 10px;                  /* Innenabstand h */
+    border: 1px solid #ccc;        /*rand*/
     border-radius: 5px;             /* Abgerundete Ecken */
 }
 
@@ -27,24 +26,25 @@ h1 {
 .book-form {
     width: 80%;                     /* 80% der Breite */
     margin: 20px auto;              /* Zentriert und Abstand */
-    padding: 20px;                  /* Innenabstand */
+    padding: 20px;                  
     background-color: white;        /* Weißer Hintergrund */
     border-radius: 10px;            /* Abgerundete Ecken */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
 
     display: flex; /* aktiviert flexbox modell für den container, ermöglicht child elements ( befinden sich innerhalb eines anderen elements, Parent element) in flexibler anordnung */
-    flex-direction: column; /* ordnet die kinder des Conatiners in einer vertikalen spalte an statt in einer zeile (> flex-direction: row )*/
+    flex-direction: column; /* ordnet die kinder des Continers in einer vertikal an*/
     align-items: center; /* zentriert kinder horizontal innerhalb des containers */
 }
 
 /* Textfelder und Textarea im Formular */
 .book-form input[type="text"],
 .book-form textarea {
-    width: 100%;    /* Volle Breite */
-    max-width: 100%; /*max breite */
-    padding: 10px;                  /* Innenabstand */
-    margin: 0 0 10px;               /* Abstand nur unten */
-    border: 1px solid #ccc;         /* 1px dick solid (durchgehend) Grauer Rand */
+    width: 100%;  
+    max-width: 100%;            /*max Breite ged */
+    padding: 10px;                  /* Innenabstand h */
+    margin-bottom: 10px;            /* Abstand  */
+    color: #ccc;                   
+    border: 1px solid ;         /* 1px dick solid (durchgehend) Grauer Rand */
     border-radius: 5px;             /* Abgerundete Ecken */
 } 
 .Bewertung { /* klasse bewertung für überschrift der sterne */
@@ -53,7 +53,7 @@ h1 {
 
 /* Sterne */
 .stars label {    
-    font-size: 20px;  /* Größere Schriftgröße für Sterne */
+    font-size: 20px;  /* Schriftgröße */
     color: #ccc;  /* Graue Sterne standardmäßig */
 }
 
@@ -64,46 +64,44 @@ h1 {
 /* Checkbox und Button */
 .book-form input[type="checkbox"] {
     margin-top: 10px;               /* Abstand nach oben */
+
 }
 
 .book-form input[type="submit"] {
-background-color: #e1d3c4;      /*gräulich hintergrund */
-border: none;                   /* Kein Rand */
+background-color: #e1d3c4;      
+border: 1px solid #ccc;                  
 padding: 10px 20px;             /* Innenabstand */
-border-radius: 5px;             /* Abgerundete Ecken */
+border-radius: 5px;    /* abgerundet*/
 cursor: pointer;                 /* hand mauszeiger */
-margin-top: 10px;                 /* abstand nach oben */
-
+margin-top: 10px;                
 }
 
 .book-form input[type="submit"]:hover {
-background-color: #c1b6a3;   /* gräulich beim Hover ( drüber fahren mit der Maus) */
+background-color: #c1b6a3;   /* KI gräulich beim Hover ( drüber fahren mit der Maus) */
 } 
 .book-cover-placeholder {
 width: 100px;            /* breit des platzhalters */
-display: block; /* elemt buch hinzufügen wird als block element dargestellt */ 
-height: auto; /* höhe des elements wird angepasst um den darin enthaltenden inhalt vollständig darzustellen */
-margin-top: 10px;  /* fügt oben am element einen abstand von 10 px hinzu */
+display: block; /* elemet buch hinzufügen wird als block element dargestellt */ 
+margin-top: 10px; 
 }    
 
-    
 .book-icon {
     width: 100px;               /* Bildbreite */
     height: auto;              /* Höhe automatisch anpassen */
-    margin-right: 40px;    /* Abstand zwischen Bild und Text */
-    margin-top: -20px;
-    /* vertical-align: middle;    /* Vertikale Ausrichtung */
+    margin-right: 40px;    
+    margin-top: -20px; 
+    
 } 
 .book-item {  
-    display:flex;
-    align-items: center;
-    margin-bottom: 15px;
+    display: flex;
+    align-items: center; 
+   
 } 
-.book-saved {
+.book-saved { /* überschrift und daten*/
     width: 80%;   /* 80 prozent der breite */
     margin: 20px auto; /* Zentriert und Abstand */
     text-align: left; /* links ausgerichtet*/
 }
 h2 {
-    color: #e1d3c4;                 /* Beige Textfarbe von gespeicherte bücher selbe wie der titel */
+    color: #e1d3c4;               
 }

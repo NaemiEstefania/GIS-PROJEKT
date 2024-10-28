@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="myStyle.css" /> 
   </head> <!-- schliesst den head bereich-->
   <body> <!-- enthält sichtbaren inhalt-->
-    <!-- Überschrift  header 1 als tag für die hauptüberschrift durch stilanpassungen in css-->
     <h1>Bücherjournal</h1>
 
     <!-- Suchleiste und placeholder wird auf dem bildschrim angezeigt solange das feld leer ist  -->
@@ -26,34 +25,33 @@
       <label for="thoughts">Gedanken:</label>
       <textarea id="thoughts" name="thoughts"></textarea> <!-- grööseres eingabefeld > textarea  -->
       <label for="cover" >Buch Cover hochladen:</label>
-      <input type="file" id="cover" name="cover" accept="image/*" /> <!-- eingabefeld vom type datei (file), welches nur Bilddateien akzeptiert -->
+      <input type="file" id="cover" name="cover" accept="image/*" /> <!-- eingabefeld vom type datei (file) -->
 
       <img src="buchcover-platzhalter.png" alt="Buchcover-Platzhalter" class="book-cover-placeholder" /> <!-- img als platzhalter für das buchcover  -->
 
       <!-- Sternebewertung Hilfe von KI -->
       <label class="Bewertung">Bewertung:</label>
       <div class="stars"> <!-- neuer bereich  bzw container durch div (blockelement und nimmt ganze zeile ein) zeilenumbruch   -->
-        <input type="radio" id="star5" name="rating" value="5" />
+        <input type="radio" id="star5" name="rating" value="1" />
         <label for="star5">★</label>
-        <input type="radio" id="star4" name="rating" value="4" />
+        <input type="radio" id="star4" name="rating" value="2" />
         <label for="star4">★</label>
         <input type="radio" id="star3" name="rating" value="3" />
         <label for="star3">★</label>
-        <input type="radio" id="star2" name="rating" value="2" />
+        <input type="radio" id="star2" name="rating" value="4" />
         <label for="star2">★</label>
-        <input type="radio" id="star1" name="rating" value="1" />
+        <input type="radio" id="star1" name="rating" value="5" />
         <label for="star1">★</label>
       </div>
 
       <!-- Checkbox für Lesestatus -->
-      <label>
-      <input type="checkbox" /> Gelesen
+      <label> 
+      <input type="checkbox" /> Gelesen 
       </label>
 
       <!-- Button zum Hinzufügen -->
       <input type="submit" value="Buch hinzufügen" />
-    </div>
-
+       </div>  
     <!-- Bereich für gespeicherte Bücher h2 als tag sprich änderung in css mit aufruf h2 -->
     <div class="book-saved">
       <h2>Gespeicherte Bücher</h2>
@@ -62,11 +60,11 @@
          <!-- Hier wird das Bild hinzugefügt, sterne aus unicode tabelle -->
          <img src="buchcover-platzhalter.png" alt=" Buch-Cover" class="book-icon" />
          <div class ="book-details"> 
-        <p></p><strong>Titel:</strong> It ends with us</p> <!-- verschiedene texabsätze mit p strong für fettgeduckt-->
-        <p><strong>Autor:</strong> Colleen Hoover</p>
-        <p><strong>Gedanken</strong> Schöne Geschichte...</p>
-        <p><strong>Bewertung:</strong> ★★★★☆</p>
-        <p><strong>Status:</strong> Gelesen</p>
+        <p></p><strong>Titel:</strong> It ends with us</br> <!-- verschiedene texabsätze mit p strong für fettgeduckt-->
+        <p><strong>Autor:</strong> Colleen Hoover</br>
+        <p><strong>Gedanken</strong> Schöne Geschichte...</br>
+        <p><strong>Bewertung:</strong> ★★★★☆</br> <!-- zeichen sterne von KI-->
+        <p><strong>Status:</strong> Gelesen</br>
         <button>Bearbeiten</button>
         <button>Löschen</button> 
          </div>
