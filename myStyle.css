@@ -40,11 +40,11 @@ h1 {
 .book-form input[type="text"],
 .book-form textarea {
     width: 100%;  
-    max-width: 100%;            /*max Breite ged */
+    max-width: 100%;                /*max Breite ged */
     padding: 10px;                  /* Innenabstand h */
     margin-bottom: 10px;            /* Abstand  */
     color: #ccc;                   
-    border: 1px solid ;         /* 1px dick solid (durchgehend) Grauer Rand */
+    border: 1px solid ;              /* 1px dick solid (durchgehend) Grauer Rand */
     border-radius: 5px;             /* Abgerundete Ecken */
 } 
 .Bewertung { /* klasse bewertung für überschrift der sterne */
@@ -71,7 +71,7 @@ h1 {
 background-color: #e1d3c4;      
 border: 1px solid #ccc;                  
 padding: 10px 20px;             /* Innenabstand */
-border-radius: 5px;    /* abgerundet*/
+border-radius: 5px;         /* abgerundet*/
 cursor: pointer;                 /* hand mauszeiger */
 margin-top: 10px;                
 }
