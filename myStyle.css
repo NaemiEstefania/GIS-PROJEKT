@@ -1,8 +1,7 @@
 /* Grundlegendes Design der Seite */
 body {
     font-family: 'Times New Roman', Times, serif; 
-    background-color: #b1a7a8;    
-    
+    background-color: #b1a7a8;     
 }
 
 /* Titel der Seite */
@@ -62,12 +61,11 @@ h1 {
 }
 
 /* Checkbox und Button */
-.book-form input[type="checkbox"] {
+.addbutton{
     margin-top: 10px;               /* Abstand nach oben */
-
 }
 
-.book-form input[type="submit"] {
+.addbutton {
 background-color: #e1d3c4;      
 border: 1px solid #ccc;                  
 padding: 10px 20px;             /* Innenabstand */
@@ -76,7 +74,7 @@ cursor: pointer;                 /* hand mauszeiger */
 margin-top: 10px;                
 }
 
-.book-form input[type="submit"]:hover {
+.addbutton:hover {
 background-color: #c1b6a3;   /* KI gräulich beim Hover ( drüber fahren mit der Maus) */
 } 
 .book-cover-placeholder {
