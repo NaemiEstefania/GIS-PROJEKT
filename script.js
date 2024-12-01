@@ -57,6 +57,10 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     toggleFormButton.textContent = 'Neues Buch hinzufügen';
     toggleFormButton.classList.add('toggle-form-button'); /* Button wird zum DOM hinzugefügt */
     bookForm.parentNode.insertBefore(toggleFormButton, bookForm);
+    // **NEU: Funktion zur Anzeige des Lesestatus**
+    function renderStatus(isRead) { 
+        return isRead ? 'Gelesen' : 'Nicht gelesen'; // <-- Status als Text zurückgeben
+    }
 
     // Funktion zur Anzeige der Sterne
     function renderStars(rating) { /* visuelle darstellung der sterne */
@@ -99,20 +103,22 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             editingBook.querySelector('.book-details p:nth-child(4)').innerHTML = `<strong>Bewertung:</strong> ${renderStars(rating)}`;
             editingBook.querySelector('.book-status').textContent = renderStatus(isRead); // Status aktualisieren
 
-            isEditing = false;
-            editingBook = null;
+            isEditing = false; // <-- Bearbeitungsmodus zurücksetzen
+            editingBook = null; // <-- Bearbeitetes Buch zurücksetzen
             addButton.textContent = 'Hinzufügen';
         } else {
             // Neues Buch hinzufügen
             const bookItem = document.createElement('div');
             bookItem.classList.add('book-item');
-            bookItem.innerHTML = `
+            //`Backticks (``) sind notwendig, wenn du Variablen oder komplexere Inhalte in einen String einbetten möchtest
+            bookItem.innerHTML = ` 
                 <img src="${coverSrc}" alt="Buch-Cover" class="book-icon" />
                 <div class="book-details">
                     <p><strong>Titel:</strong> ${title}</p>
                     <p><strong>Autor:</strong> ${author}</p>
                     <p><strong>Gedanken:</strong> ${thoughts}</p>
                     <p><strong>Bewertung:</strong> ${renderStars(rating)}</p>
+                    <p class="book-status">${renderStatus(isRead)}</p>  
                     <button class="edit-button">Bearbeiten</button>
                     <button class="delete-button">Löschen</button>
                 </div>
@@ -132,6 +138,9 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
                 ratingInputs.forEach((input) => {
                     input.checked = parseInt(input.value) === selectedRating;
                 });
+                // status auslesen und checkbox NEU
+                const statusText = bookDetails.querySelector('.book-status').textContent; // <-- Status holen
+                statusCheckbox.checked = statusText === 'Gelesen';
 
                 editingBook = bookItem;
                 isEditing = true;
@@ -146,14 +155,13 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             });
         }
 
-
         // Eingabefelder zurücksetzen
         titleInput.value = '';
         authorInput.value = '';
         thoughtsInput.value = '';
         coverInput.value = '';
         ratingInputs.forEach((input) => (input.checked = false));
-        statusCheckbox.checked = false; // Status zurücksetzen
+        statusCheckbox.checked = false; // Status zurücksetzen NEU
 
         // Formular ausblenden
         bookForm.style.display = 'none';
