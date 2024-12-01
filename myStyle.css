@@ -130,3 +130,9 @@ h2 {
     transform: translateY(0px); /* Button zurück nach unten */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ursprünglicher Schatten */
 }
+.toggle-form-button {
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    margin-top: 10px;
+    display: none;
+}

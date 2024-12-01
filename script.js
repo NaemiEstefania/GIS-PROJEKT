@@ -35,8 +35,8 @@ for (let book of books) {
 //let booksJSON = JSON.stringify(books); // speichert  element info > unter lokaler speicher//
 //localStorage.setItem("books", booksJSON)//
 
-document.addEventListener('DOMContentLoaded', () => {
-    const searchBar = document.querySelector('.search-bar');
+document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html wird geladen bevor js ausgeführt wird */
+    const searchBar = document.querySelector('.search-bar'); /* code greift auf verschiedene DOM-Elemente zu und speichert sie in variablen */
     const addButton = document.getElementById('add');
     const titleInput = document.getElementById('title');
     const authorInput = document.getElementById('author');
@@ -45,27 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const ratingInputs = document.querySelectorAll('.stars input[type="radio"]');
     const bookList = document.querySelector('.book-saved');
     const bookForm = document.querySelector('.book-form');
-    const toggleFormButton = document.createElement('button');
+    const toggleFormButton = document.createElement('button'); /* neuer button um das formular zu togglen (anzeigen/verstecken)*/
     const statusCheckbox = document.createElement('input'); // Neue Checkbox für den Status
     statusCheckbox.type = 'checkbox';
 
     let isEditing = false;
     let editingBook = null;
 
+    // Button Neues Buch hinzufügen
+
     toggleFormButton.textContent = 'Neues Buch hinzufügen';
-    toggleFormButton.classList.add('toggle-form-button');
-    toggleFormButton.style.marginTop = '10px';
-    toggleFormButton.style.display = 'none';
+    toggleFormButton.classList.add('toggle-form-button'); /* Button wird zum DOM hinzugefügt */
     bookForm.parentNode.insertBefore(toggleFormButton, bookForm);
 
     // Funktion zur Anzeige der Sterne
-    function renderStars(rating) {
+    function renderStars(rating) { /* visuelle darstellung der sterne */
         const filledStars = '★'.repeat(rating || 0);
         const emptyStars = '☆'.repeat(5 - (rating || 0));
         return filledStars + emptyStars;
     }
 
-    addButton.addEventListener('click', () => {
+    addButton.addEventListener('click', () => { /* add button fügt neue bücher zur liste hinzu */
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
         const thoughts = thoughtsInput.value.trim();
@@ -84,13 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Buchcover hochladen oder Platzhalter verwenden
+        // Buchcover hochladen oder Platzhalter verwenden falss kein cover hochgeladen wurde 
         let coverSrc = 'buchcover-platzhalter.png';
         if (coverFile) {
             coverSrc = URL.createObjectURL(coverFile);
         }
 
-        // Bearbeitung eines Buchs
+        // Bearbeitung eines Buchs , falls ein buch bearbeitet wird, werden die informationen des ausgewählten buches aktualisiert
         if (isEditing) {
             editingBook.querySelector('.book-icon').src = coverSrc;
             editingBook.querySelector('.book-details p:nth-child(1)').innerHTML = `<strong>Titel:</strong> ${title}`;
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleFormButton.style.display = 'none';
             });
 
-            // Event für Löschen
+            // delete button für Löschen
             bookItem.querySelector('.delete-button').addEventListener('click', () => {
                 bookItem.remove();
             });
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleFormButton.style.display = 'none';
     });
 
-    // Suchfunktion
+    // Suchfunktion, suchleiste filtert die buchliste basierend auf dem titel
     searchBar.addEventListener('input', () => {
         const searchText = searchBar.value.toLowerCase();
         const bookItems = document.querySelectorAll('.book-item');
