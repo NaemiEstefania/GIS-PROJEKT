@@ -33,6 +33,7 @@ h1 {
     display: flex; /* aktiviert flexbox modell für den container, ermöglicht child elements ( befinden sich innerhalb eines anderen elements, Parent element) in flexibler anordnung */
     flex-direction: column; /* ordnet die kinder des Continers in einer vertikal an*/
     align-items: center; /* zentriert kinder horizontal innerhalb des containers */
+
 }
 
 /* Textfelder und Textarea im Formular */
@@ -59,7 +60,6 @@ h1 {
 .stars input[type="radio"]:checked ~ label { /* Hilfe KI, :checked pdeudoklassenselektor um elemente auszuwählen die als ausgewählt markiert sind, label wendet die angeg regel auf nachfolgendes label element an , farbänderung nur aktiv wenn das element ausgewählt ist */
     color: #fbccd1;                    /* rosane Sterne */
 }
-
 /* Checkbox und Button */
 .addbutton{
     margin-top: 10px;               /* Abstand nach oben */
@@ -102,4 +102,31 @@ margin-top: 10px;
 }
 h2 {
     color: #e1d3c4;               
+}
+.toggle-form-button {
+    background-color: #e1d3c4;  /* Weiche beige Hintergrundfarbe */
+    color: #333;               /* Dunkler Text für gute Lesbarkeit */
+    border: 2px solid #ccc;    /* Leicht grauer Rand */
+    padding: 10px 20px;        /* Angenehme Innenabstände */
+    border-radius: 8px;        /* Abgerundete Ecken */
+    cursor: pointer;           /* Zeigt Hand-Cursor an */
+    font-size: 16px;           /* Etwas größere Schrift */
+    font-weight: bold;         /* Fettschrift für besseren Effekt */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animierter Hover-Effekt */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+    margin: 20px auto;         /* Zentrierung und Abstand nach oben/unten */
+    display: block;            /* Block-Layout für zentrierte Positionierung */
+    text-align: center;        /* Text zentrieren */
+}
+
+.toggle-form-button:hover {
+    background-color: #c1b6a3; /* Etwas dunkler beim Hover */
+    transform: translateY(-2px); /* Leichter "Hover-Push"-Effekt */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Tieferer Schatten */
+}
+
+.toggle-form-button:active {
+    background-color: #a89688; /* Noch dunkler beim Klicken */
+    transform: translateY(0px); /* Button zurück nach unten */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ursprünglicher Schatten */
 }
