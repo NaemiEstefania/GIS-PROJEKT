@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
                     <p><strong>Autor:</strong> ${author}</p>
                     <p><strong>Gedanken:</strong> ${thoughts}</p>
                     <p><strong>Bewertung:</strong> ${renderStars(rating)}</p>
-                    <p class="book-status">${renderStatus(isRead)}</p>  
+                    <p class="book-status"><strong>Status:</strong> ${renderStatus(isRead)}</p>  
                     <button class="edit-button">Bearbeiten</button>
                     <button class="delete-button">Löschen</button>
                 </div>
