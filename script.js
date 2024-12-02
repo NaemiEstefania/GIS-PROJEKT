@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     const bookList = document.querySelector('.book-saved');
     const bookForm = document.querySelector('.book-form');
     const toggleFormButton = document.createElement('button'); /* neuer button um das formular zu togglen (anzeigen/verstecken)*/
-    const statusCheckbox = document.createElement('input'); // Neue Checkbox für den Status
+    const statusCheckbox = document.getElementById('isRead'); // Neue Checkbox für den Status
     statusCheckbox.type = 'checkbox';
 
     let isEditing = false;
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     toggleFormButton.textContent = 'Neues Buch hinzufügen';
     toggleFormButton.classList.add('toggle-form-button'); /* Button wird zum DOM hinzugefügt */
     bookForm.parentNode.insertBefore(toggleFormButton, bookForm);
-    // **NEU: Funktion zur Anzeige des Lesestatus**
+    // **NEU: Funktion zur Anzeige des Lesestatus
     function renderStatus(isRead) { 
         return isRead ? 'Gelesen' : 'Nicht gelesen'; // <-- Status als Text zurückgeben
     }
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
         ratingInputs.forEach((input) => {
             if (input.checked) rating = parseInt(input.value);
         });
-
+        // falls die felder leer sind , geb warnmeldung aus 
         if (!title || !author) {
             alert('Bitte geben Sie mindestens Titel und Autor ein.');
             return;
@@ -94,18 +94,48 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             coverSrc = URL.createObjectURL(coverFile);
         }
 
-        // Bearbeitung eines Buchs , falls ein buch bearbeitet wird, werden die informationen des ausgewählten buches aktualisiert
+        // Bearbeitung eines Buchs , falls ein buch bearbeitet wird, werden die informationen des ausgewählten buches aktualisiert ohne inner html 
         if (isEditing) {
-            editingBook.querySelector('.book-icon').src = coverSrc;
-            editingBook.querySelector('.book-details p:nth-child(1)').innerHTML = `<strong>Titel:</strong> ${title}`;
-            editingBook.querySelector('.book-details p:nth-child(2)').innerHTML = `<strong>Autor:</strong> ${author}`;
-            editingBook.querySelector('.book-details p:nth-child(3)').innerHTML = `<strong>Gedanken:</strong> ${thoughts}`;
-            editingBook.querySelector('.book-details p:nth-child(4)').innerHTML = `<strong>Bewertung:</strong> ${renderStars(rating)}`;
-            editingBook.querySelector('.book-status').textContent = renderStatus(isRead); // Status aktualisieren
+            const bookIcon = editingBook.querySelector('.book-icon');
+            bookIcon.src = coverSrc;
 
-            isEditing = false; // <-- Bearbeitungsmodus zurücksetzen
-            editingBook = null; // <-- Bearbeitetes Buch zurücksetzen
+            const details = editingBook.querySelector('.book-details');
+
+            const titleElement = details.querySelector('p:nth-child(1)');
+            titleElement.textContent = '';
+            const titleStrong = document.createElement('strong')
+            titleStrong.textContent = 'Titel:';
+            titleElement.append(titleStrong, ` ${title}`);
+
+            const authorElement = details.querySelector('p:nth-child(2)');
+            authorElement.textContent = '';
+            const authorStrong = document.createElement('strong');
+            authorStrong.textContent = 'Autor:';
+            authorElement.append(authorStrong, ` ${author}`);
+
+            const thoughtsElement = details.querySelector('p:nth-child(3)');
+            thoughtsElement.textContent = '';
+            const thoughtsStrong = document.createElement('strong');
+            thoughtsStrong.textContent = 'Gedanken:';
+            thoughtsElement.append(thoughtsStrong, ` ${thoughts}`);
+
+            const ratingElement = details.querySelector('p:nth-child(4)');
+            ratingElement.textContent = '';
+            const ratingStrong = document.createElement('strong');
+            ratingStrong.textContent = 'Bewertung:';
+            ratingElement.append(ratingStrong, ` ${renderStars(rating)}`);
+
+            const statusElement = editingBook.querySelector('.book-status');
+            // Inhalt leeren, um neu zu strukturieren
+            statusElement.textContent = '';   
+            const statusStrong = document.createElement('strong');
+            statusStrong.textContent = 'Status:' ;
+            statusElement.appendChild(statusStrong);
+            statusElement.append(` ${renderStatus(isRead)}`);
+            isEditing = false;
+            editingBook = null;
             addButton.textContent = 'Hinzufügen';
+
         } else {
             // Neues Buch hinzufügen
             const bookItem = document.createElement('div');
@@ -119,8 +149,9 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
                     <p><strong>Gedanken:</strong> ${thoughts}</p>
                     <p><strong>Bewertung:</strong> ${renderStars(rating)}</p>
                     <p class="book-status"><strong>Status:</strong> ${renderStatus(isRead)}</p>  
-                    <button class="edit-button">Bearbeiten</button>
-                    <button class="delete-button">Löschen</button>
+                    <button class="action-button edit-button">Bearbeiten</button> 
+                    <button class="action-button delete-button">Löschen</button>
+                   
                 </div>
             `;
 

@@ -136,3 +136,15 @@ h2 {
     margin-top: 10px;
     display: none;
 }
+.edit-button, .delete-button {
+    background-color: #e1d3c4;
+    color: black;               /* Textfarbe */
+    border: none;               /* Kein Rahmen */
+    padding: 5px 5px;         /* Abstand innerhalb des Buttons */
+    font-size: 10px;            /* Schriftgröße */
+    border-radius: 5px;         /* Abgerundete Ecken */
+    cursor: pointer;   
+    margin-top: 0;
+}
+
+
