@@ -57,9 +57,6 @@ h1 {
     color: #ccc;  /* Graue Sterne standardmäßig */
 }
 
-.stars input[type="radio"]:checked ~ label { /* Hilfe KI, :checked pdeudoklassenselektor um elemente auszuwählen die als ausgewählt markiert sind, label wendet die angeg regel auf nachfolgendes label element an , farbänderung nur aktiv wenn das element ausgewählt ist */
-    color: #fbccd1;                    /* rosane Sterne */
-}
 /* Checkbox und Button */
 .addbutton{
     margin-top: 10px;               /* Abstand nach oben */
@@ -144,7 +141,6 @@ h2 {
     font-size: 10px;            /* Schriftgröße */
     border-radius: 5px;         /* Abgerundete Ecken */
     cursor: pointer;   
-    margin-top: 0;
 }
 
 

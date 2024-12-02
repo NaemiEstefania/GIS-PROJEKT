@@ -34,10 +34,14 @@ for (let book of books) {
 } */
 //let booksJSON = JSON.stringify(books); // speichert  element info > unter lokaler speicher//
 //localStorage.setItem("books", booksJSON)//
+// Sobald die Seite vollständig geladen ist führt der Browser die Funktion aus, die nach dem => kommt
 
 document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html wird geladen bevor js ausgeführt wird */
-    const searchBar = document.querySelector('.search-bar'); /* code greift auf verschiedene DOM-Elemente zu und speichert sie in variablen */
+    const searchBar = document.querySelector('.search-bar'); 
+    // query selector sucht nach dem ersten element der klasse .searchbar
+    /* code greift auf verschiedene DOM-Elemente zu und speichert sie in variablen */
     const addButton = document.getElementById('add');
+    // const bedeutet dass wir variable names searchbar erstellen 
     const titleInput = document.getElementById('title');
     const authorInput = document.getElementById('author');
     const thoughtsInput = document.getElementById('thoughts');
@@ -48,41 +52,51 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     const toggleFormButton = document.createElement('button'); /* neuer button um das formular zu togglen (anzeigen/verstecken)*/
     const statusCheckbox = document.getElementById('isRead'); // Neue Checkbox für den Status
     statusCheckbox.type = 'checkbox';
+    // stellt sicher dass das element status checkbox vom typ checkbox ist
 
     let isEditing = false;
-    let editingBook = null;
-
+    // variable is editing wird erstellt und auf false gesetzt 
+    // wird später verwendet um zu verfolgen ob der benutzer ein buch bearbeitet
+    let editingBook = null; 
+    // vorest auf null gesetzt da noch nichts bearbeitet ist 
+    // variable speichert aktuall bearbeitetes buch 
+   // lokaler speicher für Bücher zeigt nicht an ? versucht, ein Buch aus dem lokalen Speicher des Browsers zu holen.
+    let bookItem = JSON.parse(localStorage.getItem("bookItem")) || [];
+    
     // Button Neues Buch hinzufügen
-
+     
     toggleFormButton.textContent = 'Neues Buch hinzufügen';
-    toggleFormButton.classList.add('toggle-form-button'); /* Button wird zum DOM hinzugefügt */
-    bookForm.parentNode.insertBefore(toggleFormButton, bookForm);
-    // **NEU: Funktion zur Anzeige des Lesestatus
+    toggleFormButton.classList.add('toggle-form-button');  // css klasse  Button 
+    bookForm.parentNode.insertBefore(toggleFormButton, bookForm); // fügt den button in das DOM
+    //  Funktion zur Anzeige des Lesestatus parameter is readd
     function renderStatus(isRead) { 
+        // ternäre bindung die überprüft ob isread wahr oder falsch ist KI
         return isRead ? 'Gelesen' : 'Nicht gelesen'; // <-- Status als Text zurückgeben
     }
 
-    // Funktion zur Anzeige der Sterne
+    // Funktion zur Anzeige der Sterne KI
     function renderStars(rating) { /* visuelle darstellung der sterne */
-        const filledStars = '★'.repeat(rating || 0);
-        const emptyStars = '☆'.repeat(5 - (rating || 0));
+        const filledStars = '★'.repeat(rating || 0); /* falls rating null ist werden o sterne angeziegt*/
+        const emptyStars = '☆'.repeat(5 - (rating || 0)); /* berechnet anzahl der leeren sterne die benötigt werden um ins. % sterne zu erreicehn*/
         return filledStars + emptyStars;
     }
 
+     // liest die datei aus hinzufügen
     addButton.addEventListener('click', () => { /* add button fügt neue bücher zur liste hinzu */
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
         const thoughts = thoughtsInput.value.trim();
         const coverFile = coverInput.files[0];
+        //Initialisiert eine Variable rating mit dem Wert null Dies ist die Bewertung des Buches die später anhand der ausgefüllten Sternewerte ermittelt wird
         let rating = null;
         let isRead = statusCheckbox.checked; // Status von der Checkbox holen
 
 
         // Sternbewertung auslesen
         ratingInputs.forEach((input) => {
-            if (input.checked) rating = parseInt(input.value);
+            if (input.checked) rating = parseInt(input.value); // überprift ob radio button ausgewählt wurde wenn ja wird der wert des buttos in eine zahl umgewandelt 
         });
-        // falls die felder leer sind , geb warnmeldung aus 
+        // falls die felder leer sind  KI, geb warnmeldung aus 
         if (!title || !author) {
             alert('Bitte geben Sie mindestens Titel und Autor ein.');
             return;
@@ -94,15 +108,15 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             coverSrc = URL.createObjectURL(coverFile);
         }
 
-        // Bearbeitung eines Buchs , falls ein buch bearbeitet wird, werden die informationen des ausgewählten buches aktualisiert ohne inner html 
-        if (isEditing) {
+        // Bearbeitung eines Buchs KI , falls ein buch bearbeitet wird, werden die informationen des ausgewählten buches aktualisiert ohne inner html 
+        if (isEditing) { /* überprift of wir gerande Bearbeiten*/
             const bookIcon = editingBook.querySelector('.book-icon');
-            bookIcon.src = coverSrc;
+            bookIcon.src = coverSrc; /* ändert eigenschaft auf neues cover*/
 
             const details = editingBook.querySelector('.book-details');
 
-            const titleElement = details.querySelector('p:nth-child(1)');
-            titleElement.textContent = '';
+            const titleElement = details.querySelector('p:nth-child(1)'); /* sucht das erste p tag und speichert es in der variablen ritle emelemnt*/
+            titleElement.textContent = ''; /* löscht aktuellen inhalt*/
             const titleStrong = document.createElement('strong')
             titleStrong.textContent = 'Titel:';
             titleElement.append(titleStrong, ` ${title}`);
@@ -126,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             ratingElement.append(ratingStrong, ` ${renderStars(rating)}`);
 
             const statusElement = editingBook.querySelector('.book-status');
+
             // Inhalt leeren, um neu zu strukturieren
             statusElement.textContent = '';   
             const statusStrong = document.createElement('strong');
@@ -137,11 +152,13 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             addButton.textContent = 'Hinzufügen';
 
         } else {
-            // Neues Buch hinzufügen
+            // Neues Buch hinzufügen falss wir nicht bearbeiten
+            // erstellt neues div element 
             const bookItem = document.createElement('div');
             bookItem.classList.add('book-item');
             //`Backticks (``) sind notwendig, wenn du Variablen oder komplexere Inhalte in einen String einbetten möchtest
             bookItem.innerHTML = ` 
+        
                 <img src="${coverSrc}" alt="Buch-Cover" class="book-icon" />
                 <div class="book-details">
                     <p><strong>Titel:</strong> ${title}</p>
@@ -158,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             // Buch in die Liste einfügen
             bookList.appendChild(bookItem);
 
-            // Event für Bearbeiten
+            // Event für Bearbeiten alles wird eben wieder in die felder eingefügt
             bookItem.querySelector('.edit-button').addEventListener('click', () => {
                 const bookDetails = bookItem.querySelector('.book-details');
                 titleInput.value = bookDetails.querySelector('p:nth-child(1)').textContent.replace('Titel: ', '');
@@ -169,49 +186,61 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
                 ratingInputs.forEach((input) => {
                     input.checked = parseInt(input.value) === selectedRating;
                 });
-                // status auslesen und checkbox NEU
+                // status auslesen und checkbox 
                 const statusText = bookDetails.querySelector('.book-status').textContent; // <-- Status holen
                 statusCheckbox.checked = statusText === 'Gelesen';
-
+                // stezt editing book variabke auf gerade bearbeites book item
                 editingBook = bookItem;
                 isEditing = true;
+                // befinden und im bearbeitungsmodus 
+                // ändert text 
                 addButton.textContent = 'Änderungen speichern';
                 bookForm.style.display = 'block';
                 toggleFormButton.style.display = 'none';
+                // blendet toogle form button aus weil wir bearbeiten
             });
 
             // delete button für Löschen
             bookItem.querySelector('.delete-button').addEventListener('click', () => {
                 bookItem.remove();
+                // entfernt book titem aus dem dom , wird nicht mehr angezeigt
             });
         }
 
         // Eingabefelder zurücksetzen
+        // leert die werte , passiert nach dem hinzufügen oder bearbeiten
         titleInput.value = '';
         authorInput.value = '';
         thoughtsInput.value = '';
         coverInput.value = '';
         ratingInputs.forEach((input) => (input.checked = false));
-        statusCheckbox.checked = false; // Status zurücksetzen NEU
+        statusCheckbox.checked = false; // Status zurücksetzen 
 
-        // Formular ausblenden
+        // Formular ausblenden macht button sichtbar
         bookForm.style.display = 'none';
         toggleFormButton.style.display = 'block';
     });
-
+    // Wenn der Benutzer auf den Button klickt, wird das Formular angezeigt oder ausgeblendet.
     toggleFormButton.addEventListener('click', () => {
         bookForm.style.display = 'block';
         toggleFormButton.style.display = 'none';
+        // button nur sichtbar wenn formular nicht angezeigt wird
     });
 
     // Suchfunktion, suchleiste filtert die buchliste basierend auf dem titel
     searchBar.addEventListener('input', () => {
         const searchText = searchBar.value.toLowerCase();
+        // speichert text den der benutzer einegeben kann
         const bookItems = document.querySelectorAll('.book-item');
+        // sammelt book item elemenze 
         bookItems.forEach((item) => {
+            // geht jedes buch durch 
             const title = item.querySelector('.book-details p:nth-child(1)').textContent.toLowerCase();
+            //holst sich den titel des buches der im ersten p tag innerhalb book details im container steht
             item.style.display = title.includes(searchText) ? 'flex' : 'none';
+            // Wenn der Titel des Buches den Suchbegriff (searchText) enthält, wird das Buch (item) angezeigt (mit display: flex). Andernfalls wird es ausgeblendet (display: none).
         });
     });
-});
+}); 
+
 
