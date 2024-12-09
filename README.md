@@ -14,7 +14,8 @@ Außerdem gibt es eine Löschen-Schaltfläche neben jedem Buch und eine Schaltfl
 Wie und Wo werden die Informationen angezeigt?
 In einer dynamischen Liste oder Grid-Layout (evtl. auch Gruppierungen nach Genre), die Liste zeigt alle Details zu den Büchern (Titel, Autor, Bewertung mit Sternen, Lesestatus, Sonstiges).
 
-beispielbuch teil html
+Beispielbuch teil html vor local storage 
+
  <div class="book-item">
          <!-- Hier wird das Bild hinzugefügt, sterne aus unicode tabelle -->
          <img src="buchcover-platzhalter.png" alt=" Buch-Cover" class="book-icon" />
