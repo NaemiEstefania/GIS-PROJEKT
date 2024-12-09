@@ -1,6 +1,16 @@
+async function requestTextWithGET(url) {
+    const response = await fetch(url); // fetch muss immer auf der client seite sein und darf niemals auf der server seite sein
+    console.log('Response:', response); // vollständiges Response-Objekt
+    const text = await response.text();
+    console.log('Response-Text:', text); // Text aus dem Response-Body
+  }
+  
+  requestTextWithGET('http://127.0.0.1:3000/');
+  console.log('Zwischenzeitlich weiterarbeiten...');
 
+  // fetch soll da eingesezt werden wo etwas in js in den local storage geschoben wurde
+  
 // Sobald die Seite vollständig geladen ist führt der Browser die Funktion aus, die nach dem => kommt
-
 document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html wird geladen bevor js ausgeführt wird */
     const bookList = document.querySelector('.book-saved');  /* code greift auf verschiedene DOM-Elemente zu und speichert sie in variablen */
     const bookForm = document.querySelector('.book-form');
@@ -50,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
         return filledStars + emptyStars;
     }
 
-    // Funktion: Bücherliste rendern
+    // Funktion: Bücherliste rendern Hilfe KI
     function renderBooks() {
         const books = getBooksFromLocalStorage(); // holt bücher aus storage 
         bookList.innerHTML = ''; // Vorhandene Bücherliste leeren
@@ -84,10 +94,10 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
                 
                 ratingInputs.forEach((input) => {
                     input.checked = parseInt(input.value) === bookToEdit.rating;
-                });
+                }); // Radio-Button oder die Checkbox, dessen Wert (value) dem rating-Wert von bookToEdit entspricht, als ausgewählt (checked) markiert wird
 
                 statusCheckbox.checked = bookToEdit.isRead;
-
+                // Die Checkbox visualisiert, ob das Buch als "gelesen" markiert wurde (isRead)
                 isEditing = true;
                 editingBookIndex = index;
                 addButton.textContent = 'Änderungen speichern';
