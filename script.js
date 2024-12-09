@@ -1,39 +1,3 @@
-/*let element = document.getElementById("title");
-element.addEventListener ("click", onclick); // bei click wird es pink , onclick ist der name für die funktion//
-function onclick  (event) { 
-    element.style.color = ("pink");
-}
-element.value = "tippen hier ";
-
- /*let element2 = document.querySelector(".book-form"); 
-element2.innerHTML = "<p>hallo</p>" //beides zum hinzufügen //
-let newelement = document.createElement("p");
-newelement.textContent = "hiii";
-element2.append(newelement); */
-
-/*let books = [ {
-    title:"It ends with us",
-    author:"Colleen Hoover",
-    thoughts:"Ist eine Schöne Geschichte...",
-    Bewertung: 5, 
-    Gelesen: true 
-} ]
-//console.log(book)//
-let details = document.getElementById("book-details");
-//details.innerHTML = "<h1>" + book[0].title  + "</h1>" + "<p>" + book[0].author + "</p>" +  "<p> " + book[0].thoughts + "</p>" +"<p>" + book[0].Bewertung + "</p>" + "<p>"  + book.Gelesen + "</p>"; //
-
-for (let book of books) {
-    details.innerHTML += "<h1>" + book.title  + "</h1>" + "<p>" + book.author + "</p>" +  "<p> " + book.thoughts + "</p>" +"<p>" + book.Bewertung + "</p>" + "<p>"  + book.Gelesen + "</p>"; // übernehemen aus html book details //
-   let h1 = document.createElement("h1");
-    h1.textContent =book.title;
-    // h1.className = "..."
-    let pelement = document.createElement("p");
-    pelement.textContent = book.author;
-
-    details.append(h1,pelement);
-} */
-//let booksJSON = JSON.stringify(books); // speichert  element info > unter lokaler speicher//
-//localStorage.setItem("books", booksJSON)//
 
 // Sobald die Seite vollständig geladen ist führt der Browser die Funktion aus, die nach dem => kommt
 
@@ -59,10 +23,11 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     booksHeading.classList.add('books-heading');
     bookList.parentNode.insertBefore(booksHeading, bookList);
    
-    
+
     // Funktion Bücher aus localStorage holen in array gespeichert
     // Diese Methode ruft den Wert ab, der unter dem Schlüssel 'books' im localStorage
     // Konvertiert die gespeicherten JSON-Daten (String) zurück in ein JavaScript-Objekt oder Array
+    // Es wird versucht, die Daten aus dem LocalStorage mit dem Schlüssel books
     function getBooksFromLocalStorage() {
         return JSON.parse(localStorage.getItem('books')) || [];
     }
@@ -84,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
         const emptyStars = '☆'.repeat(5 - (rating || 0)); /* berechnet anzahl der leeren sterne die benötigt werden um ins. % sterne zu erreicehn*/
         return filledStars + emptyStars;
     }
-
 
     // Funktion: Bücherliste rendern
     function renderBooks() {
@@ -109,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             `;
 
             // Event: Buch bearbeiten
+            // query selector Findet das erste Element im DOM das mit dem angegebenen CSS-Selektor übereinstimmt
             bookItem.querySelector('.edit-button').addEventListener('click', () => {
                 const books = getBooksFromLocalStorage();
                 const bookToEdit = books[index]; // holt das zu bearbeitende buch 
@@ -141,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             bookList.appendChild(bookItem);
         });
     }
-
     // liest die datei aus hinzufügen
     // eventlistener reagiert auf ein bestimmtes eriegnis beippiel click hier
     // Event: Neues Buch hinzufügen oder Änderungen speichern
