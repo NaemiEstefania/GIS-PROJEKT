@@ -8,8 +8,9 @@ async function requestTextWithGET(url) {
   requestTextWithGET('http://127.0.0.1:3000/');
   console.log('Zwischenzeitlich weiterarbeiten...');
 
-  // fetch soll da eingesezt werden wo etwas in js in den local storage geschoben wurde
+// fetch soll da eingesezt werden wo etwas in js in den local storage geschoben wurde
   
+
 // Sobald die Seite vollständig geladen ist führt der Browser die Funktion aus, die nach dem => kommt
 document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html wird geladen bevor js ausgeführt wird */
     const bookList = document.querySelector('.book-saved');  /* code greift auf verschiedene DOM-Elemente zu und speichert sie in variablen */
