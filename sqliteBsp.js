@@ -3,7 +3,7 @@
 const sqlite3 = require('sqlite3');
 const sqlite = require('sqlite');
 
-// SQLite Datei angeben pfad angeben 
+// SQLite Datei angeben pfad angeben  
 const dbFilePath = 'hochschule.db';
 
 async function main() {

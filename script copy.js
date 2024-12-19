@@ -1,4 +1,4 @@
-/* async function requestTextWithGET(url) {
+async function requestTextWithGET(url) {
     const response = await fetch(url); // fetch muss immer auf der client seite sein und darf niemals auf der server seite sein
     console.log('Response:', response); // vollständiges Response-Objekt
     const text = await response.text();
@@ -6,7 +6,7 @@
   }
   
   requestTextWithGET('http://127.0.0.1:3000/');
-  console.log('Zwischenzeitlich weiterarbeiten...'); */
+  console.log('Zwischenzeitlich weiterarbeiten...');
 
 // fetch soll da eingesezt werden wo etwas in js in den local storage geschoben wurde
   
@@ -42,24 +42,11 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     function getBooksFromLocalStorage() {
         return JSON.parse(localStorage.getItem('books')) || [];
     }
-    async function getBooksFromServer() {
-        console.log('getBooksFromServer');
-         const response = await fetch(`http://127.0.0.1:3000/books`);
-         const data = await response.json();   // holt sich informationen json teil 
-        return data;         
-    }
 
     // Funktion: Bücher in localStorage speichern
     // Wandelt das JavaScript-Array books in einen JSON-String um, da localStorage nur Strings speichern
     function saveToLocalStorage(books) {
-        localStorage.setItem('books', JSON.stringify(books)); 
-    }
-
-    async function saveToServer (book) {
-        const response = await fetch('http://127.0.0.1:3000/addbook', { // er schickt das buch rüber 
-            method: 'post',
-            body: JSON.stringify(book),                       
-          });
+        localStorage.setItem('books', JSON.stringify(books));
     }
 
     // Funktion: Status-Text anzeigen
@@ -75,10 +62,8 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     }
 
     // Funktion: Bücherliste rendern Hilfe KI
-    async function renderBooks() {
-         // const books = getBooksFromLocalStorage(); // holt bücher aus storage 
-         console.log('renderBooks');
-        const books = await getBooksFromServer();
+    function renderBooks() {
+        const books = getBooksFromLocalStorage(); // holt bücher aus storage 
         bookList.innerHTML = ''; // Vorhandene Bücherliste leeren
 
         books.forEach((book, index) => {  // Geht durch jedes Buch im Array 'books', um es im DOM anzuzeigen
@@ -100,9 +85,8 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
 
             // Event: Buch bearbeiten
             // query selector Findet das erste Element im DOM das mit dem angegebenen CSS-Selektor übereinstimmt
-            bookItem.querySelector('.edit-button').addEventListener('click', async () => {   // leichte anpassung 
-                // const books = getBooksFromLocalStorage();
-                const books = await getBooksFromServer();
+            bookItem.querySelector('.edit-button').addEventListener('click', () => {
+                const books = getBooksFromLocalStorage();
                 const bookToEdit = books[index]; // holt das zu bearbeitende buch 
                 // Füllt die Eingabefelder im Formular mit den aktuellen Buchdaten
                 titleInput.value = bookToEdit.title;
@@ -123,9 +107,8 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             });
 
             // Event: Buch löschen
-            bookItem.querySelector('.delete-button').addEventListener('click',  () => {   // leichte anpassung 
-              // const books = getBooksFromLocalStorage();
-            // const books = await getBooksFromServer();
+            bookItem.querySelector('.delete-button').addEventListener('click', () => {
+                const books = getBooksFromLocalStorage();
                 books.splice(index, 1); // Buch aus der Liste entfernen
                 saveToLocalStorage(books); // aktualisierte array wird wieder im local storage gespeichert 
                 renderBooks(); // Bücherliste aktualisieren
@@ -164,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
 
         const newBook = { title, author, thoughts, rating, isRead, coverSrc };
          // Die aktuelle Bücherliste wird aus dem localStorage geladen
-        // const books = getBooksFromLocalStorage();
+        const books = getBooksFromLocalStorage();
         // Bearbeitung eines Buchs KI , falls ein buch bearbeitet wird, werden die informationen des ausgewählten buches aktualisiert ohne inner html 
 
         if (isEditing) {
@@ -172,13 +155,11 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             isEditing = false;
             editingBookIndex = null;
             addButton.textContent = 'Hinzufügen';
-        } 
-        else {
-            saveToServer(newBook);
-            // books.push(newBook); // Das neue Buch wird zur Liste hinzugefügt:
+        } else {
+            books.push(newBook); // Das neue Buch wird zur Liste hinzugefügt:
         }
 
-       /* saveToLocalStorage(books); //Die geänderte Liste wird wieder im localStorage gespeichert */
+        saveToLocalStorage(books); //Die geänderte Liste wird wieder im localStorage gespeichert
         renderBooks();
 
         // Formular zurücksetzen
