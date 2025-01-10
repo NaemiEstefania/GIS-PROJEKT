@@ -9,7 +9,7 @@
   console.log('Zwischenzeitlich weiterarbeiten...'); */
 
 // fetch soll da eingesezt werden wo etwas in js in den local storage geschoben wurde
-  
+// frontend 
 
 // Sobald die Seite vollständig geladen ist führt der Browser die Funktion aus, die nach dem => kommt
 document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html wird geladen bevor js ausgeführt wird */
@@ -61,6 +61,19 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             body: JSON.stringify(book),                       
           });
     }
+    async function editbook (book) {
+        const response = await fetch('http://127.0.0.1:3000/editbook', { //  
+            method: 'put',
+            body: JSON.stringify(book),                       
+          });
+    }
+
+    async function deletebook (book) {
+        const response = await fetch('http://127.0.0.1:3000/deletebook', { // 
+            method: 'delete',
+            body: JSON.stringify(book),                       
+          });
+    }
 
     // Funktion: Status-Text anzeigen
     function renderStatus(isRead) {
@@ -102,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             // query selector Findet das erste Element im DOM das mit dem angegebenen CSS-Selektor übereinstimmt
             bookItem.querySelector('.edit-button').addEventListener('click', async () => {   // leichte anpassung 
                 // const books = getBooksFromLocalStorage();
-                const books = await getBooksFromServer();
+                // evtl wieder rein const books = await getBooksFromServer();
                 const bookToEdit = books[index]; // holt das zu bearbeitende buch 
                 // Füllt die Eingabefelder im Formular mit den aktuellen Buchdaten
                 titleInput.value = bookToEdit.title;
@@ -123,9 +136,11 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             });
 
             // Event: Buch löschen
-            bookItem.querySelector('.delete-button').addEventListener('click',  () => {   // leichte anpassung 
+            bookItem.querySelector('.delete-button').addEventListener('click', async () => {   // leichte anpassung 
               // const books = getBooksFromLocalStorage();
             // const books = await getBooksFromServer();
+                const bookToDelete = books[index]; // das zu löschende buch abrufen 
+                await deletebook(bookToDelete); // Aufruf der deletebookFunktion, um das buch vom server zu löschen 
                 books.splice(index, 1); // Buch aus der Liste entfernen
                 saveToLocalStorage(books); // aktualisierte array wird wieder im local storage gespeichert 
                 renderBooks(); // Bücherliste aktualisieren
@@ -172,10 +187,12 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             isEditing = false;
             editingBookIndex = null;
             addButton.textContent = 'Hinzufügen';
+            editbook(book);
         } 
         else {
             saveToServer(newBook);
             // books.push(newBook); // Das neue Buch wird zur Liste hinzugefügt:
+
         }
 
        /* saveToLocalStorage(books); //Die geänderte Liste wird wieder im localStorage gespeichert */
