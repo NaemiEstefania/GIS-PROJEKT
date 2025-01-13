@@ -1,6 +1,6 @@
 const http = require('http'); // backend 
 const mongodb = require('mongodb');
-const {ObjectId } = mongodb;
+const {ObjectId } = mongodb; // id importieren 
 
 const hostname = '127.0.0.1'; // localhost
 const port = 3000;
@@ -25,21 +25,19 @@ const server = http.createServer(async (request, response) => { // node.js serve
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // erlaubt header 
 
 
-
   if (request.method === 'OPTIONS') { // Beantwortet sogenannte Preflight-Anfragen, die von Browsern geschickt werden
-    response.statusCode = 204;
-    response.end();
+   response.statusCode = 204; // Die OPTIONS-Methode beschreibt die Kommunikationsoptionen für die Zielressource.
+   response.end();
     return;
   }
 
   const url = new URL(request.url || '', `http://${request.headers.host}`); // Analysiert die Anfrage-URL, um auf den Pfad und Parameter zuzugreifen
   const booksCollection = getBooksCollection();
 
-
   try {
     switch (url.pathname) { // Verarbeitet die verschiedenen Endpunkte basierend auf dem Pfad in der Anfrage
       case '/books':
-        if (request.method === 'GET') {
+        if (request.method === 'GET') { // Anfragen mit GET sollten nur Daten abrufen und keinen Anfrage-Inhalt enthalten
           const books = await booksCollection.find({}).toArray(); // ruft alle bücher ab
           response.statusCode = 200;
           response.setHeader('Content-Type', 'application/json'); // antwortyp json
@@ -51,15 +49,14 @@ const server = http.createServer(async (request, response) => { // node.js serve
         }
         break;
 
-        case '/addbook': {
+        case '/addbook': {     //  Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
           const booksCollection = mongoClient.db('bookjournal').collection('books');
-          switch (request.method) {
-              case 'POST': 
+          if (request.method === 'POST'){
                   let jsonString = '';
                   request.on('data', data => {  // solange daten ankommen, füg die der json string variable hinzu 
                   jsonString += data;
                   });
-                  request.on('end', async () => {
+                 request.on('end', async () => {
                  await booksCollection.insertOne(JSON.parse(jsonString));
                  response.statusCode = 201;
                  response.setHeader('Content-Type', 'application/json'); // Content-Type für JSON setzen
@@ -72,8 +69,10 @@ const server = http.createServer(async (request, response) => { // node.js serve
         }
         
         // ?? const { MongoClient, ObjectId } = require('mongodb'); // Stellen sicher, dass ObjectId korrekt importiert wir
+     
 
-        case '/editbook':
+
+        case '/editbook':  //  put Methode ersetzt alle aktuellen Darstellungen der Zielressource durch den Anfrage-Inhalt
           if (request.method === 'PUT') { // PUT zum Aktualisieren eines Buches
             let jsonString = '';
             request.on('data', (data) => {
@@ -81,9 +80,9 @@ const server = http.createServer(async (request, response) => { // node.js serve
             });
             request.on('end', async () => {
               const { _id, ...updatedData } = JSON.parse(jsonString); // Extrahiere die ID und die neuen Daten
-              const result = await booksCollection.updateOneOne(
-                { _id: ObjectId(_id) }, // Suche nach der ID des Buches
-                { $set: updatedData } // Setze die neuen Daten
+              const result = await booksCollection.updateOne(
+                { _id: ObjectId(_id) }, // Suche nach der ID des Buches funktioniert nur mit new object id 
+                { $set: updatedData } // Setze die neuen Daten Es wird nur das geänderte Feld im Dokument aktualisiert, der Rest bleibt unverändert
               );
               response.statusCode = result.modifiedCount > 0 ? 200 : 404; // Wenn erfolgreich, sende 200, sonst 404
               response.setHeader('Content-Type', 'application/json'); // Setze den Content-Type
@@ -106,9 +105,9 @@ const server = http.createServer(async (request, response) => { // node.js serve
             jsonString += data; // json daten sammeln 
           });
           request.on('end', async () => {
-            const { _id } = JSON.parse(jsonString); // id extrahieren 
-            const result = await booksCollection.deleteOne({ _id: ObjectId(_id) }); // buch löschen geht nur mit new davor   
-            response.statusCode = result.deletedCount > 0 ? 200 : 404;
+            const { _id } = JSON.parse(jsonString); // id extrahieren  // update one nur bestimmte felder
+            const result = await booksCollection.deleteOne({ _id: new ObjectId(_id) }); // buch löschen geht nur mit new davor    
+            response.statusCode = result.deletedCount > 0 ? 200 : 404; // Class constructor ObjectId cannot be invoked without 'new'
             response.setHeader('Content-Type', 'application/json');
             response.end(result.deletedCount > 0 ? 'Book deleted successfully' : 'Book not found');
           });

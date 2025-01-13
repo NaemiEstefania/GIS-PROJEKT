@@ -42,34 +42,36 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     // Diese Methode ruft den Wert ab, der unter dem Schlüssel 'books' im localStorage
     // Konvertiert die gespeicherten JSON-Daten (String) zurück in ein JavaScript-Objekt oder Array
     // Es wird versucht, die Daten aus dem LocalStorage mit dem Schlüssel books
-    function getBooksFromLocalStorage() {
-        return JSON.parse(localStorage.getItem('books')) || [];
-    }
+    //function getBooksFromLocalStorage() {
+     //   return JSON.parse(localStorage.getItem('books')) || [];
+    //}
     
     async function getBooksFromServer() { // funktioniert 
-        console.log('getBooksFromServer');
-         const response = await fetch(`http://127.0.0.1:3000/books`);
+        console.log('getBooksFromServer'); // fetch: Sendet eine GET-Anfrage an den Server, um die gespeicherten Bücher zu laden
+         const response = await fetch(`http://127.0.0.1:3000/books`); // Mit fetch wird ein HTTP Request an die angegebene url gesendet.
          const data = await response.json();   // holt sich informationen json teil 
-        return data;         
+        return data;          // await wartet bis anfrage abgeschlossen ist 
     }
 
     // Funktion: Bücher in localStorage speichern
     // Wandelt das JavaScript-Array books in einen JSON-String um, da localStorage nur Strings speichern
-     function saveToLocalStorage(books) {
-       localStorage.setItem('books', JSON.stringify(books)); 
-    }
+     //function saveToLocalStorage(books) {
+     //  localStorage.setItem('books', JSON.stringify(books)); 
+    //}
 
     async function saveToServer(book) { // funktioniert nicht im browser
         console.log('savetoserver');
         const response = await fetch('http://127.0.0.1:3000/addbook', { // er schickt das buch rüber 
-            method: 'POST',
-            body: JSON.stringify(book),                       
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' }, // headers: Legt fest, dass die Anfrage JSON-Daten enthält
+            body: JSON.stringify(book),     // neue buch wird als json string gesendet                
           });
     }
     
     async function deletebook(book) {
         const response = await fetch('http://127.0.0.1:3000/deletebook', { // 
             method: 'delete',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(book),                       
           });
     }
@@ -77,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
     async function editbook(book) {
         const response = await fetch('http://127.0.0.1:3000/editbook', { //  
             method: 'put',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(book),                       
           });
     }
@@ -121,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             // query selector Findet das erste Element im DOM das mit dem angegebenen CSS-Selektor übereinstimmt
             bookItem.querySelector('.edit-button').addEventListener('click', async () => {   // leichte anpassung 
                 // const books = getBooksFromLocalStorage();
-                const books = await getBooksFromServer();
+                 const books = await getBooksFromServer();
                 const bookToEdit = books[index]; // holt das zu bearbeitende buch 
                 // Füllt die Eingabefelder im Formular mit den aktuellen Buchdaten
                 titleInput.value = bookToEdit.title;
@@ -139,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
                 addButton.textContent = 'Änderungen speichern';
                 bookForm.style.display = 'block';
                 toggleFormButton.style.display = 'none'; 
+                //renderBooks();
             });
 
             // Event: Buch löschen
@@ -148,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
                 const bookToDelete = books[index]; // das zu löschende buch abrufen 
                 await deletebook(bookToDelete); // Aufruf der deletebookFunktion, um das buch vom server zu löschen 
                 books.splice(index, 1); // Buch aus der Liste entfernen
-                 //saveToLocalStorage(books); // aktualisierte array wird wieder im local storage gespeichert 
+                // saveToLocalStorage(books); // aktualisierte array wird wieder im local storage gespeichert 
                 renderBooks(); // Bücherliste aktualisieren
             });
 
@@ -180,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             return;
         }
 
-       // let coverSrc = '';  // neu
+        let coverSrc = '';  // neu
         if (coverFile) {
             coverSrc = URL.createObjectURL(coverFile);
         }
@@ -195,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             // Buch bearbeiten: Das zu bearbeitende Buch wird durch 'newBook' ersetzt und an den Server geschickt
             const bookToEdit = await getBooksFromServer(); // Holt alle Bücher vom Server
             bookToEdit[editingBookIndex] = newBook; // Ersetzt das Buch in der Liste mit dem neuen Buch
-            await editbook (book); // Sendet das aktualisierte Buch an den Server
+            // await editbook (newBook); // Sendet das aktualisierte Buch an den Server
             isEditing = false; // Setzt den Bearbeitungsmodus zurück
             editingBookIndex = null;
             addButton.textContent = 'Hinzufügen'; // Ändert den Button-Text zurück auf "Hinzufügen"
@@ -203,17 +207,20 @@ document.addEventListener('DOMContentLoaded', () => { /* gesamte inhalt von html
             //isEditing = false;
             //editingBookIndex = null;
             //addButton.textContent = 'Hinzufügen';
-            //editbook(book);
+             editbook (book); // evtl falsche stelle 
+            
         } 
         else {
-            console.log("Editing book");
-             saveToServer(newBook); // Sendet das neue Buch an den Server
-             bookToEdit.push(newBook); // Das neue Buch wird zur Liste hinzugefügt:
+            console.log("Editing book"); 
+            // new book erstellt komplett neues buch und ersezt es nicht 
+             saveToServer(newBook); // await ? Sendet das neue Buch an den Server
+             // bookToEdit.push(newBook); // Das neue Buch wird zur Liste hinzugefügt:
+    
 
         }
 
        /* saveToLocalStorage(books); //Die geänderte Liste wird wieder im localStorage gespeichert */
-        // renderBooks();
+        renderBooks();
 
         // Formular zurücksetzen
         titleInput.value = '';
